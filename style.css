@@ -3506,6 +3506,74 @@ section.color-white {
 
 }
 
+.dev-content-wrapper{
+  display: flex;
+  gap:30px;
+}
+
+.dev-content-wrapper > div:first-child{
+  flex:1;
+  max-width: 300px;
+}
+
+.dev-content-wrapper > div:nth-child(2){
+  flex:2;
+  max-width: 1200px;
+  padding-right:30px;
+  padding-left:30px;
+}
+
+.dev-menu{
+  background-color: black;
+  color:white;
+  border-radius: 0 30px 30px 0;
+  overflow: hidden;
+}
+
+.dev-menu h5{
+  color: var(--mmPink);
+  padding:30px;
+}
+
+.dev-menu-content > ul {
+  list-style-type: none;
+  padding:0;
+}
+
+.dev-page-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background-color: black;
+}
+
+.dev-page-nav.current{
+  background-color: white;
+  color:black;
+}
+
+.dev-page-nav.current svg path{
+  fill: black;
+}
+
+.dev-page-nav svg path{
+  fill: white;
+}
+
+.dev-page-nav a{
+  color:white;
+}
+
+.dev-page-nav.current a{
+  color:black;
+}
+
+.dev-menu-content > ul ul{
+  background-color: white;
+  list-style-type: none;
+  padding:15px 30px;
+}
 /*------------------------------------*\
     RESPONSIVE
 \*------------------------------------*/
