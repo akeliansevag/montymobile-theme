@@ -3400,6 +3400,7 @@ section.color-white {
       font-family: monospace;
       /* white-space: pre; */
       overflow-x: auto;
+      word-wrap: break-word;
       margin-top:30px;
     }
 

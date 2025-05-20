@@ -64,7 +64,11 @@ if ($args['data']) {
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
-
+                                <?php if ($it['code_block']): ?>
+                                    <div class="code-block">
+                                        <pre class="mb-0"><code><?= htmlspecialchars($it['code_block']) ?></code></pre>
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
                         <?php endif; ?>
@@ -105,9 +109,9 @@ if ($args['data']) {
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    </>
-
-                <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
