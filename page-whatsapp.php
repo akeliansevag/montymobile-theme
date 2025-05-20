@@ -3,22 +3,22 @@
 <section class="bg-white pb-5">
     <div class="container">
         <div class="white-block">
-            <h3>I. SMS API Integration Example</h3>
+            <h3>I. WhatsApp API Integration Example</h3>
         </div>
         <?php
 
         $data = [];
         $data[] = [
-            'title' => '<span>POST</span> Send Campaign',
-            'description' => 'This API is used to create and send an SMS campaign using a file that contains a list of recipients. The file can include destination numbers, and the campaign details (like message content, sender ID, etc.) are defined within the request. It’s an essential tool for marketers to reach a large audience with personalized content.',
-            'use_case' => 'Imagine you are running a holiday sale for an e-commerce store, and you have a list of customers segmented by region. By using this API, you can upload a file with all the customer numbers and send a campaign promoting your sale to thousands of users in just a few clicks. The message can be tailored to include variables (such as names or regions), making it more personal and engaging for each recipient.',
+            'title' => '<span>POST</span> Send WhatsApp Campaign',
+            'description' => 'This API is used to create and send a WhatsApp campaign by uploading a file containing the list of recipients. The campaign details such as sender ID and template ID are also included in the request, allowing businesses to send WhatsApp messages in bulk using a predefined template.',
+            'use_case' => 'Imagine you\'re running a customer engagement campaign for a product launch. By using this API, you can upload a file with all your customer contacts and send a personalized message to them using a predefined WhatsApp template. This is perfect for businesses that need to reach a large audience quickly and efficiently, while still maintaining personalized communication.',
             'info' => [
                 [
                     'title' => 'API DETAILS',
                     'items' => [
                         [
                             'title' => 'Endpoint',
-                            'value' => 'https://omniapis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-file',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/apikey/v1/WhatsappCampaignApi/campaign-file',
                             'copy' => true
                         ]
                     ]
@@ -42,30 +42,8 @@
                     'items' => [
                         [
                             'title' => 'Tenant',
-                            'value' => '98df9ffe-fa84-41ee-9293-33614722d952',
+                            'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
                         ]
-                    ]
-                ],
-                [
-                    'title' => 'BODY',
-                    'items' => [
-                        [
-                            'title' => 'File',
-                            'value' => 'Upload the file containing the list of destination numbers.',
-                        ],
-                        [
-                            'title' => 'countryCode',
-                            'value' => 'The country code of the recipients.'
-                        ],
-                        [
-                            'title' => 'Campaign',
-                            'value' => 'JSON object containing the campaign details (name, message content, sender ID, etc.).'
-                        ],
-                        [
-                            'title' => 'LongUrlFromFile',
-                            'value' => 'Boolean to indicate whether long URLs are provided in the file.'
-                        ],
-
                     ]
                 ],
                 [
@@ -73,59 +51,33 @@
                     'code_block' => [
                         'inner_title' => 'json',
                         'code' => '
-{
-    “file”: “/C:/Users/xxx/Downloads/SampleDestinations.xlsx”,
-    “countryCode”: “961”,
-    “Campaign”: {
-        “Name”: “test campaign”,
-        “Content”: “test message”,
-        “SenderId”: “43ac6548-f7d6-4570-a714-25f96f4197e4”,
-        “HasShortUrl”: false,
-        “Variables”: [],
-        “HasBlacklistShortUrl”: false
-    },
-    “LongUrlFromFile”: true
-}'
+curl --location \'https://omni-apis.montymobile.com/notification/api/apikey/v1/WhatsappCampaignApi/campaign-file\' \
+--header \'Tenant: 98df9ffe-fa84-41ee-9293-33614722d952\' \
+--form \'file=@"/C:/Users/naim.jaber/Downloads/Export_Whatsapp_Template (1).csv"\' \
+--form \'countryCode="961"\' \
+--form \'Campaign="{
+  \"Name\": \"test campaign\",
+  \"SenderId\": \"7080303b-8261-49e1-b0f5-18469a3df2af\",
+  \"TemplateId\": \"1dddcd26-3084-474e-95ce-bbfd1ea635c4\"
+}"'
                     ],
 
                 ],
-                [
-                    'title' => 'EXAMPLE REQUEST',
-                    'code_block' => [
-                        'title' => 'Send Campaign',
-                        'inner_title' => 'curl',
-                        'dark' => true,
-                        'code' => "
-curl —location 'https://omni-apis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-file' \
-—header 'Tenant: 98df9ffe-fa84-41ee-9293-33614722d952' \
-—form 'file=@“/C:/Users/naim.jaber/Downloads/SampleDestinationsWithHeaders.bb73721b (7) 4.xlsx”' \
-—form 'countryCode=“961”' \
-—form 'Campaign=“{
-    \”Name\”: \”test campaign\”,
-    \”Content\”: \”test message \”,
-    \”SenderId\”: \”43ac6548-f7d6-4570-a714-25f96f4197e4\”,
-    \”HasShortUrl\”: false,
-    \”Variables\”: [],
-    \”HasBlacklistShortUrl\”: false
-}”’"
-                    ],
-
-                ]
             ]
         ];
 
 
         $data[] = [
-            'title' => '<span>PUT</span> Launch Campaign',
-            'description' => 'This API allows you to launch an already created SMS campaign. It activates the campaign, starting the process of sending the SMS messages to the recipients listed in the uploaded file.',
-            'use_case' => 'After creating a campaign using the Send Campaign API, you might want to schedule its launch. For instance, if you’ve prepared a campaign for a Black Friday sale, you can trigger it to launch at midnight on the sale day. By using the Launch Campaign API, you ensure that your messages reach customers exactly when you want them to.',
+            'title' => '<span>PUT</span> Launch WhatsApp Campaign',
+            'description' => 'This API allows you to launch an already created WhatsApp campaign. After creating the campaign using the Send Campaign API, you can use this API to trigger the campaign to begin sending messages to the recipients.',
+            'use_case' => 'Let’s say you’ve prepared a WhatsApp campaign for an upcoming flash sale. You can schedule the launch using this API, ensuring that your WhatsApp messages are sent out at the right time to all your customers. This API is useful for businesses that want to control the timing of their campaigns to maximize engagement.',
             'info' => [
                 [
                     'title' => 'API DETAILS',
                     'items' => [
                         [
                             'title' => 'Endpoint',
-                            'value' => 'https://omniapis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-file',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/apikey/v1/WhatsappCampaignApi/campaign-launch',
                             'copy' => true
                         ]
                     ]
@@ -168,7 +120,7 @@ curl —location 'https://omni-apis.montymobile.com/notification/api/apikey/v1/S
                         'inner_title' => 'json',
                         'code' => '
 {
-    "CampaignId": "4c19d462-543f-4a1a-8e2a-6db6bbf1d97a"
+    "CampaignId": " 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4"
 }'
                     ],
 
@@ -176,15 +128,14 @@ curl —location 'https://omni-apis.montymobile.com/notification/api/apikey/v1/S
                 [
                     'title' => 'EXAMPLE REQUEST',
                     'code_block' => [
-                        'title' => 'Launch Campaign',
                         'inner_title' => 'curl',
                         'dark' => true,
                         'code' => "
-curl —location —request PUT ‘https://omni-apis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-launch’ \
-—header ‘Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4’ \
-—data ‘{
-    “CampaignId”:”4c19d462-543f-4a1a-8e2a-6db6bbf1d97a”
-}’"
+curl --location --request PUT 'https://omni-apis.montymobile.com/notification/api/apikey/v1/WhatsappCampaignApi/campaign-launch' \
+--header 'Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4' \
+--data '{
+    \"CampaignId\":\"4c19d462-543f-4a1a-8e2a-6db6bbf1d97a\"
+}'"
                     ],
 
                 ]
@@ -193,22 +144,17 @@ curl —location —request PUT ‘https://omni-apis.montymobile.com/notificatio
 
 
         $data[] = [
-            'title' => '<span>GET</span> Send SMS',
-            'description' => 'This API allows you to send a single SMS to a recipient by providing the destination number, source (sender ID), and the message. It is used for sending quick, direct messages.',
-            'use_case' => 'Imagine you’re running a utility company and need to send a reminder to customers about an upcoming payment deadline. By using this API, you can send a personalized message to each customer, such as: “Your payment for this month is due on the 15th. Please contact us if you have any questions.” This is an ideal use case for sending important notifications that require immediate attention.',
+            'title' => '<span>POST</span> Send OTP via WhatsApp',
+            'description' => 'This API allows you to send a One-Time Password (OTP) to a user\'s WhatsApp account using a predefined message template. It is ideal for scenarios where a business needs to verify a user\'s identity, such as during account sign-up, password reset, or two-factor authentication.',
+            'use_case' => "Imagine you're managing a financial services app, and users need to verify their phone number for account security. By using this API, you can send an OTP to the user's WhatsApp, ensuring secure and verified transactions. This API is a perfect solution for scenarios that require identity verification or transaction authorization, leveraging the convenience and security of WhatsApp.",
             'info' => [
                 [
                     'title' => 'API DETAILS',
                     'items' => [
                         [
                             'title' => 'Endpoint',
-                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/sms/send-sms?Destination=96171454548&Source=1234&Message=Hello World&ApiId=56c15726-c7c4-4549-a9b7-b0e76a246abe',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-whatsapp',
                             'copy' => true,
-                            'code_block' => '
-Generated from cURL: curl -X GET “https://mm-omni-api-software-qa.montylocal.net/notification
-/api/v1/api/send-sms?Destination=96171454548&Source=1234&Message=testmessage&ApiId=56c15726-c7c4-4549-a9b7-b0e76a246abe”
--H “Tenant:3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4”
--H “api-key:b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a”'
                         ]
                     ]
                 ],
@@ -232,32 +178,28 @@ Generated from cURL: curl -X GET “https://mm-omni-api-software-qa.montylocal.n
                         [
                             'title' => 'Tenant',
                             'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
-                        ],
-                        [
-                            'title' => 'api-key',
-                            'value' => 'b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a'
                         ]
                     ]
                 ],
                 [
-                    'title' => 'PARAMS',
+                    'title' => 'BODY',
                     'items' => [
                         [
                             'title' => 'Destination',
-                            'value' => '96171454548',
+                            'value' => 'The phone number of the recipient in international format. Example: "+961XXXXXXXX"',
                         ],
                         [
                             'title' => 'Source',
-                            'value' => '1234'
+                            'value' => 'The sender’s phone number or messaging ID (e.g., WhatsApp Business number).'
                         ],
-                        [
-                            'title' => 'Message',
-                            'value' => 'Hello World'
-                        ],
-
                         [
                             'title' => 'ApiId',
-                            'value' => '56c15726-c7c4-4549-a9b7-b0e76a246abe'
+                            'value' => 'Your API key or authentication ID used to verify the request.'
+                        ],
+
+                        [
+                            'title' => 'TemplateId',
+                            'value' => 'The unique identifier of the pre-approved message template to be used in the campaign.'
                         ],
                     ]
                 ],
@@ -267,151 +209,33 @@ Generated from cURL: curl -X GET “https://mm-omni-api-software-qa.montylocal.n
                         'inner_title' => 'json',
                         'code' => '
 {
-    “CampaignId”: “4c19d462-543f-4a1a-8e2a-6db6bbf1d97a”
-}'
-                    ],
-
-                ],
-                [
-                    'title' => 'EXAMPLE REQUEST',
-                    'code_block' => [
-                        'title' => 'Send SMS',
-                        'inner_title' => 'curl',
-                        'dark' => true,
-                        'code' => "
-curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/
-send-sms?Destination=96171454548&Source=1234&Message=Hello%20World&ApiId=56c15726-c7c4-4549-a9b7-b0e76a246abe’ \
-—header ‘Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4’ \
-—header ‘api-key: b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a’ \
-—data ‘’"
-                    ],
-
-                ]
-            ]
-        ];
-
-
-        $data[] = [
-            'title' => '<span>POST</span> Send SMS',
-            'description' => 'Similar to the GET method, this API also allows sending a single SMS, but it uses a POST request. It sends the SMS to a specified destination with a source and message.',
-            'use_case' => 'You’re a customer support platform, and you need to send order confirmation or support ticket updates to users. By using this API, you can send a confirmation message like “Your order has been confirmed! Thank you for shopping with us.” or “Your support ticket is now being processed. We will update you shortly.”',
-            'info' => [
-                [
-                    'title' => 'API DETAILS',
-                    'items' => [
-                        [
-                            'title' => 'Endpoint',
-                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/sms/send-sms',
-                            'copy' => true,
-                            'code_block' => '
-Generated from cURL: curl -X GET “https://mm-omni-api-software-qa.montylocal.net/
-notification/api/v1/api/send-sms?Destination=96171454548&
-Source=1234&Message=testmessage&ApiId=56c15726-c7c4-4549-a9b7-b0e76a246abe”
--H “Tenant:3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4”
--H “api-key:b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a”'
-                        ]
-                    ]
-                ],
-                [
-                    'title' => 'AUTHORIZATION',
-                    'subtitle' => 'API Key',
-                    'items' => [
-                        [
-                            'title' => 'Key',
-                            'value' => 'api-key',
-                        ],
-                        [
-                            'title' => 'Value',
-                            'value' => '{{api_key}}',
-                        ],
-                    ]
-                ],
-                [
-                    'title' => 'HEADERS',
-                    'items' => [
-                        [
-                            'title' => 'Tenant',
-                            'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
-                        ],
-                    ]
-                ],
-                [
-                    'title' => 'BODY',
-                    'items' => [
-                        [
-                            'title' => 'Source',
-                            'value' => 'Sender ID used for sending SMS message',
-                        ],
-                        [
-                            'title' => 'Message',
-                            'value' => 'Content of the SMS message'
-                        ],
-                        [
-                            'title' => 'Destination',
-                            'value' => 'The number of recipients'
-                        ],
-
-                        [
-                            'title' => 'API_ID',
-                            'value' => 'static ID value'
-                        ],
-                    ]
-                ],
-                [
-                    'title' => 'BODY EXAMPLE',
-                    'code_block' => [
-                        'inner_title' => 'json',
-                        'code' => '
-{
-  "Source": "1234",
-  "Message": "test message",
   "Destination": "96170168509",
-  "ApiId": "80f8c779-5f03-45bd-8a28-cb730937671d"
+  "Source": "1234",
+  "ApiId": "0a03d595-b35b-4c99-b420-fba157299da6",
+  "Link": "",
+  "HeaderVariable": "",
+  "BodyVariable": "",
+  "TemplateId": "c0053db3-de25-44d2-8f8c-c28ae17b1b8a"
 }'
                     ],
 
                 ],
-                [
-                    'title' => 'EXAMPLE REQUEST',
-                    'code_block' => [
-                        'title' => 'Send SMS Unauthorized',
-                        'inner_title' => 'curl',
-                        'dark' => true,
-                        'code' => "
-curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/send-sms’ \
-—header ‘Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4’ \
-—header ‘api-key: b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a’ \
-—data ‘{
-    “Destination”:”96171454847”,
-    “Source”:”123”,
-    “Message”:”hello world”,
-    “ApiId”:”56c15726-c7c4-4549-a9b7-b0e76a246abe”
-}’"
-                    ],
-
-                ]
             ]
         ];
 
 
         $data[] = [
-            'title' => '<span>POST</span> Send OTP (One-Time Password) via SMS',
-            'description' => 'This API is used to send a one-time password (OTP) via SMS. It is commonly used for two-factor authentication (2FA), identity verification, and secure login processes.',
-            'use_case' => 'You are building an online banking application, and customers need to verify their identity to log in securely. Using this API, you can send a one-time password to the user’s registered phone number, ensuring secure authentication for sensitive transactions.',
+            'title' => '<span>POST</span> Send WhatsApp Message (Without variables)',
+            'description' => 'This API allows you to send a personalized WhatsApp message to a recipient using a predefined template. It includes variables such as the destination number, message content, and the template ID to tailor the communication for each recipient.',
+            'use_case' => 'Imagine you\'re running a customer service platform and need to send order confirmations or notifications to users. Using this API, you can send a WhatsApp message confirming the user’s order, complete with personalized details like order ID or customer name. This API is particularly useful for businesses that require automated, yet personalized, communications with their customers via WhatsApp.',
             'info' => [
                 [
                     'title' => 'API DETAILS',
                     'items' => [
                         [
                             'title' => 'Endpoint',
-                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/sms/send-otp',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-whatsapp',
                             'copy' => true,
-                            'code_block' => '
-Generated from cURL: curl -X GET “https://mm-omni-api-software-qa.montylocal.net/
-notification/api/v1/api/send-sms?Destination=96171454548
-&Source=1234&Message=testmessage&ApiId=56c15726-c7c4-4549-a9b7-b0e76a246abe”
--H “Tenant:3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4”
--H “api-key:b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a”'
                         ]
                     ]
                 ],
@@ -436,9 +260,27 @@ notification/api/v1/api/send-sms?Destination=96171454548
                             'title' => 'Tenant',
                             'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
                         ],
+                    ]
+                ],
+                [
+                    'title' => 'BODY',
+                    'items' => [
                         [
-                            'title' => 'api-key',
-                            'value' => 'b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a',
+                            'title' => 'Destination',
+                            'value' => 'The phone number of the recipient in international format. Example: "+961XXXXXXXX"',
+                        ],
+                        [
+                            'title' => 'Source',
+                            'value' => 'The sender’s phone number or messaging ID (e.g., WhatsApp Business number).'
+                        ],
+                        [
+                            'title' => 'ApiId',
+                            'value' => 'Your API key or authentication ID used to verify the request.'
+                        ],
+
+                        [
+                            'title' => 'TemplateId',
+                            'value' => 'The unique identifier of the pre-approved message template to be used in the campaign.'
                         ],
                     ]
                 ],
@@ -448,30 +290,30 @@ notification/api/v1/api/send-sms?Destination=96171454548
                         'inner_title' => 'json',
                         'code' => '
 {
-    “Destination”:”96171454847”,
-    “Source”:”1234”,
-    “Message”:”Hello World”,
-    “ApiId”:”56c15726-c7c4-4549-a9b7-b0e76a246abe”
-}'
+    "Destination": "<RECIPIENT_PHONE_NUMBER>",
+    "Source": "<SENDER_PHONE_NUMBER>",
+    "ApiId": "<YOUR_API_ID>",
+    "TemplateId": "<TEMPLATE_ID>"
+  }'
                     ],
 
                 ],
                 [
                     'title' => 'EXAMPLE REQUEST',
                     'code_block' => [
-                        'title' => 'Send OTP',
                         'inner_title' => 'curl',
                         'dark' => true,
                         'code' => "
-curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/send-otp’ \
-—header ‘Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4’ \
-—header ‘api-key: b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a’ \
-—data ‘{
-    “Destination”:”96171454847”,
-    “Source”:”123”,
-    “Message”:”hello world”,
-    “ApiId”:”56c15726-c7c4-4549-a9b7-b0e76a246abe”
-}’"
+curl --location 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-whatsapp' \
+  --header 'Tenant: <TENANT_ID>' \
+  --header 'api-key: <API_KEY>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    \"Destination\": \"<RECIPIENT_PHONE_NUMBER>\",
+    \"Source\": \"<SENDER_PHONE_NUMBER>\",
+    \"ApiId\": \"<YOUR_API_ID>\",
+    \"TemplateId\": \"<TEMPLATE_ID>\"
+  }'"
                     ],
 
                 ]
@@ -480,23 +322,17 @@ curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/se
 
 
         $data[] = [
-            'title' => '<span>POST</span> Send Bulk SMS',
-            'description' => 'This API allows you to send bulk SMS messages to multiple recipients. It is particularly useful for marketing campaigns, alerts, and notifications where you need to reach a large audience simultaneously. With this API, you can specify the sender ID, message content, and a list of destination phone numbers.',
-            'use_case' => 'Imagine you are managing a marketing campaign for a retail store that’s offering a limited-time sale. You can use the Send Bulk SMS API to notify thousands of customers simultaneously about the sale. By providing the source (sender ID) and the message content, you can send personalized promotions directly to the users’ phones. This API ensures that your message reaches all recipients in a timely manner, making it perfect for large-scale campaigns.',
+            'title' => '<span>POST</span> Send WhatsApp Message (Media in header and variables in body)',
+            'description' => 'This API allows you to send a personalized WhatsApp message to a recipient using a predefined template. It includes variables such as the destination number, message content, and the template ID to tailor the communication for each recipient.',
+            'use_case' => 'Imagine you\'re running a customer service platform and need to send order confirmations or notifications to users. Using this API, you can send a WhatsApp message confirming the user’s order, complete with personalized details like order ID or customer name. This API is particularly useful for businesses that require automated, yet personalized, communications with their customers via WhatsApp.',
             'info' => [
                 [
                     'title' => 'API DETAILS',
                     'items' => [
                         [
                             'title' => 'Endpoint',
-                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/sms/send-bulk-sms',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-whatsapp',
                             'copy' => true,
-                            'code_block' => '
-Generated from cURL: curl -X POST 
-“https://mm-omni-api-software-qa.montylocal.net/notification/api/v1/api/send-bulk-sms” -H 
-“Tenant:3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4” -H “api-key:b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a” 
--H “Content-Type: application/json” -d ‘
-{ “Source”:”1234”, “Message”: “test message”, “Destination” : [“96174548474”], “ApiId”: “a911d636-a380-438f-9fe0-f3407004418d” }’'
                         ]
                     ]
                 ],
@@ -520,8 +356,117 @@ Generated from cURL: curl -X POST
                         [
                             'title' => 'Tenant',
                             'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
-                        ]
+                        ],
+                    ]
+                ],
+                [
+                    'title' => 'BODY',
+                    'items' => [
+                        [
+                            'title' => 'Destination',
+                            'value' => 'The phone number of the recipient in international format. Example: "+961XXXXXXXX"',
+                        ],
+                        [
+                            'title' => 'Source',
+                            'value' => 'The sender’s phone number or messaging ID (e.g., WhatsApp Business number).'
+                        ],
+                        [
+                            'title' => 'ApiId',
+                            'value' => 'Your API key or authentication ID used to verify the request.'
+                        ],
 
+                        [
+                            'title' => 'TemplateId',
+                            'value' => 'The unique identifier of the pre-approved message template to be used in the campaign.'
+                        ],
+                        [
+                            'title' => 'Link',
+                            'value' => 'The URL of the image, file, or media to be attached with the message (if applicable).'
+                        ],
+                        [
+                            'title' => 'BodyVariable:',
+                            'value' => 'A dynamic variable that will be inserted into the template message body (e.g., user name, date, etc.).'
+                        ],
+                    ]
+                ],
+                [
+                    'title' => 'BODY EXAMPLE',
+                    'code_block' => [
+                        'inner_title' => 'json',
+                        'code' => '
+{
+    "Destination": "<RECIPIENT_PHONE_NUMBER>",
+    "Source": "<SENDER_PHONE_NUMBER>",
+    "ApiId": "<YOUR_API_ID>",
+    "TemplateId": "<TEMPLATE_ID>",
+    "Link": "<MEDIA_LINK", 
+    "BodyVariable": "<BODY_VAR>",
+  }'
+                    ],
+
+                ],
+                [
+                    'title' => 'EXAMPLE REQUEST',
+                    'code_block' => [
+                        'inner_title' => 'curl',
+                        'dark' => true,
+                        'code' => "
+curl --location 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-whatsapp' \
+  --header 'Tenant: <TENANT_ID>' \
+  --header 'api-key: <API_KEY>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    \"Destination\": \"<RECIPIENT_PHONE_NUMBER>\",
+    \"Source\": \"<SENDER_PHONE_NUMBER>\",
+    \"ApiId\": \"<YOUR_API_ID>\",
+    \"Link\": \"<MEDIA_LINK>\", 
+    \"BodyVariable\": \"<VARIABLE_VALUE\",
+    \"TemplateId\": \"<TEMPLATE_ID>\"
+  }'"
+                    ],
+
+                ]
+            ]
+        ];
+
+
+        $data[] = [
+            'title' => '<span>POST</span> Send Bulk WhatsApp',
+            'description' => 'This API allows you to send WhatsApp messages in bulk to multiple recipients using a predefined template. It is ideal for large-scale marketing campaigns, customer notifications, or other bulk communications where you need to send the same message to many recipients, with or without slight personalization using variables.',
+            'use_case' => 'Imagine you are running an e-commerce platform and want to inform all your customers about a special promotional sale. By using the Send Bulk WhatsApp API, you can send the same promotional message to thousands of customers, leveraging the WhatsApp platform for direct communication. The predefined template can include dynamic variables like customer names or product categories, making the message more personalized while maintaining the bulk messaging feature.',
+            'info' => [
+                [
+                    'title' => 'API DETAILS',
+                    'items' => [
+                        [
+                            'title' => 'Endpoint',
+                            'value' => 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-bulk-whatsapp',
+                            'copy' => true,
+
+                        ]
+                    ]
+                ],
+                [
+                    'title' => 'AUTHORIZATION',
+                    'subtitle' => 'API Key',
+                    'items' => [
+                        [
+                            'title' => 'Key',
+                            'value' => 'api-key',
+                        ],
+                        [
+                            'title' => 'Value',
+                            'value' => '{{api_key}}',
+                        ],
+                    ]
+                ],
+                [
+                    'title' => 'HEADERS',
+                    'items' => [
+                        [
+                            'title' => 'Tenant',
+                            'value' => '3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4',
+                        ],
                     ]
                 ],
                 [
@@ -529,21 +474,41 @@ Generated from cURL: curl -X POST
                     'items' => [
                         [
                             'title' => 'Source',
-                            'value' => 'Sender ID used for sending SMS message',
+                            'value' => 'The sender’s phone number or messaging ID (e.g., WhatsApp Business number).',
                         ],
                         [
-                            'title' => 'Message',
-                            'value' => 'Content of the SMS message',
+                            'title' => 'ApiId',
+                            'value' => 'Your API key or authentication ID used to verify the request.'
+                        ],
+                        [
+                            'title' => 'TemplateId',
+                            'value' => 'The unique identifier of the pre-approved message template to be used in the campaign.'
+                        ],
+
+                        [
+                            'title' => 'whatsappRequests',
+                            'value' => 'list of clients having the following:'
                         ],
                         [
                             'title' => 'Destination',
-                            'value' => 'The number of recipients',
+                            'value' => 'The phone number of the recipient in international format. Example: "+961XXXXXXXX"'
                         ],
                         [
-                            'title' => 'API_ID',
-                            'value' => 'static ID value',
+                            'title' => 'Link',
+                            'value' => 'The URL of the image, file, or media to be attached with the message (if applicable).'
                         ],
-
+                        [
+                            'title' => 'FileName',
+                            'value' => 'The name of the header file in case the template has a file-type header (e.g., "invoice.pdf").'
+                        ],
+                        [
+                            'title' => 'HeaderVariable',
+                            'value' => 'The dynamic text variable used in the header if the template has a text-type header (e.g., "Hi Raed!").'
+                        ],
+                        [
+                            'title' => 'BodyVariable',
+                            'value' => 'A dynamic variable that will be inserted into the template message body (e.g., user name, date, etc.).'
+                        ],
                     ]
                 ],
                 [
@@ -552,39 +517,55 @@ Generated from cURL: curl -X POST
                         'inner_title' => 'json',
                         'code' => '
 {
-  "Source": "1234",
-  "Message": "test message",
-  "Destination": [
-    "{Destination}"
-  ],
-  "ApiId": "030f1a3c-ad8c-485f-970f-2c4ca9800437"
-}
-'
+   "Source": "<SENDER_PHONE_NUMBER>",
+    "ApiId": "<YOUR_API_ID>",
+    "TemplateId": "<TEMPLATE_ID>",
+    “whatsappRequests”: [
+        "Destination": "<RECIPIENT_PHONE_NUMBER>",
+        "Link": "<MEDIA_LINK", 
+        “FileName”: ”<MEDIA_NAME>”,
+        "HeaderVariable": "<HEADER_VAR>",
+        "BodyVariable": ["<BODY_VAR>"]
+   ]
+}'
                     ],
 
                 ],
                 [
                     'title' => 'EXAMPLE REQUEST',
                     'code_block' => [
-                        'title' => 'Send Bulk Invalid Sender',
                         'inner_title' => 'curl',
                         'dark' => true,
                         'code' => "
-curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/send-bulk-sms’ \
-—header ‘Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4’ \
-—header ‘api-key: b911d60d9d3417df636ecf8b2af869df61f154d3cff670b7c6ebb212741a9f2a’ \
-—header ‘Content-Type: application/json’ \
-—data ‘{
-    “Source”:”1234”,
-    “Message”: “hello world”,
-    “Destination” : [“96174548474”],
-    “ApiId”: “a911d636-a380-438f-9fe0-f3407004418d”
-}’"
+curl --location 'https://omni-apis.montymobile.com/notification/api/v1/Whatsapp/send-bulk-whatsapp' \
+--header 'Tenant: 3d936a5d-1d56-450b-a04c-f1a7b5c2d5d4' \
+--header 'api-key: 68da964bc9a0134abffc4688b784782352fc4162ae4fd6ec533589db78326bda' \
+--header 'Content-Type: application/json' \
+--data '{
+  \"TemplateId\": \"26c943cf-c2a1-4ef7-ab96-7329c17fc137\",
+  \"Source\": \"1234\",
+  \"ApiId\": \"fe662d53-ab1c-41c6-b50f-2d3936f68981\",
+  \"whatsappRequests\": [
+    {
+      \"Destination\": \"96174787848\",
+      \"Link\": \"\",
+      \"FileName\": \"\",
+      \"HeaderVariable\": \"\",
+      \"BodyVariable\": [
+        \"body1\"
+
+      ]
+      
+    }
+  ]
+}'
+"
                     ],
 
                 ]
             ]
         ];
+
         ?>
 
         <?= get_template_part('components/developers/info-blocks', null, ['data' => $data]) ?>
