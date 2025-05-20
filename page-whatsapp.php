@@ -47,9 +47,10 @@
                     ]
                 ],
                 [
-                    'title' => 'BODY EXAMPLE',
+                    'title' => 'EXAMPLE REQUEST',
                     'code_block' => [
-                        'inner_title' => 'json',
+                        'inner_title' => 'curl',
+                        'dark' => true,
                         'code' => '
 curl --location \'https://omni-apis.montymobile.com/notification/api/apikey/v1/WhatsappCampaignApi/campaign-file\' \
 --header \'Tenant: 98df9ffe-fa84-41ee-9293-33614722d952\' \
