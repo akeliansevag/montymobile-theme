@@ -6,6 +6,7 @@
             <h3>I. SMS API Integration Example</h3>
         </div>
         <?php
+
         $data = [];
         $data[] = [
             'title' => '<span>POST</span> Send Campaign',
@@ -70,39 +71,43 @@
                 [
                     'title' => 'BODY EXAMPLE',
                     'code_block' => [
-                        'title' => 'json',
-                        'code' => '{
-                                    “file”: “/C:/Users/xxx/Downloads/SampleDestinations.xlsx”,
-                                    “countryCode”: “961”,
-                                    “Campaign”: {
-                                        “Name”: “test campaign”,
-                                        “Content”: “test message”,
-                                        “SenderId”: “43ac6548-f7d6-4570-a714-25f96f4197e4”,
-                                        “HasShortUrl”: false,
-                                        “Variables”: [],
-                                        “HasBlacklistShortUrl”: false
-                                    },
-                                    “LongUrlFromFile”: true
-                                    }'
+                        'inner_title' => 'json',
+                        'code' => '
+{
+    “file”: “/C:/Users/xxx/Downloads/SampleDestinations.xlsx”,
+    “countryCode”: “961”,
+    “Campaign”: {
+        “Name”: “test campaign”,
+        “Content”: “test message”,
+        “SenderId”: “43ac6548-f7d6-4570-a714-25f96f4197e4”,
+        “HasShortUrl”: false,
+        “Variables”: [],
+        “HasBlacklistShortUrl”: false
+    },
+    “LongUrlFromFile”: true
+}'
                     ],
 
                 ],
                 [
                     'title' => 'EXAMPLE REQUEST',
                     'code_block' => [
-                        'title' => 'curl',
-                        'code' => "curl —location ‘https://omni-apis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-file’ \
-                                —header ‘Tenant: 98df9ffe-fa84-41ee-9293-33614722d952’ \
-                                —form ‘file=@“/C:/Users/naim.jaber/Downloads/SampleDestinationsWithHeaders.bb73721b (7) 4.xlsx”’ \
-                                —form ‘countryCode=“961”’ \
-                                —form ‘Campaign=“{
-                                \”Name\”: \”test campaign\”,
-                                \”Content\”: \”test message \”,
-                                \”SenderId\”: \”43ac6548-f7d6-4570-a714-25f96f4197e4\”,
-                                \”HasShortUrl\”: false,
-                                \”Variables\”: [],
-                                \”HasBlacklistShortUrl\”: false
-                                }”’"
+                        'title' => 'Send Campaign',
+                        'inner_title' => 'curl',
+                        'dark' => true,
+                        'code' => "
+curl —location 'https://omni-apis.montymobile.com/notification/api/apikey/v1/SMSCampaignApi/campaign-file' \
+—header 'Tenant: 98df9ffe-fa84-41ee-9293-33614722d952' \
+—form 'file=@“/C:/Users/naim.jaber/Downloads/SampleDestinationsWithHeaders.bb73721b (7) 4.xlsx”' \
+—form 'countryCode=“961”' \
+—form 'Campaign=“{
+    \”Name\”: \”test campaign\”,
+    \”Content\”: \”test message \”,
+    \”SenderId\”: \”43ac6548-f7d6-4570-a714-25f96f4197e4\”,
+    \”HasShortUrl\”: false,
+    \”Variables\”: [],
+    \”HasBlacklistShortUrl\”: false
+}”’"
                     ],
 
                 ]
