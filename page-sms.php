@@ -14,6 +14,7 @@
             $data = [];
             $data[] = [
                 'title' => '<span>POST</span> Send Campaign',
+                'slug' => 'post-send-campaign',
                 'description' => 'This API is used to create and send an SMS campaign using a file that contains a list of recipients. The file can include destination numbers, and the campaign details (like message content, sender ID, etc.) are defined within the request. It’s an essential tool for marketers to reach a large audience with personalized content.',
                 'use_case' => 'Imagine you are running a holiday sale for an e-commerce store, and you have a list of customers segmented by region. By using this API, you can upload a file with all the customer numbers and send a campaign promoting your sale to thousands of users in just a few clicks. The message can be tailored to include variables (such as names or regions), making it more personal and engaging for each recipient.',
                 'info' => [
@@ -121,6 +122,7 @@ curl —location 'https://omni-apis.montymobile.com/notification/api/apikey/v1/S
 
             $data[] = [
                 'title' => '<span>PUT</span> Launch Campaign',
+                'slug' => 'put-launch-campaign',
                 'description' => 'This API allows you to launch an already created SMS campaign. It activates the campaign, starting the process of sending the SMS messages to the recipients listed in the uploaded file.',
                 'use_case' => 'After creating a campaign using the Send Campaign API, you might want to schedule its launch. For instance, if you’ve prepared a campaign for a Black Friday sale, you can trigger it to launch at midnight on the sale day. By using the Launch Campaign API, you ensure that your messages reach customers exactly when you want them to.',
                 'info' => [
@@ -198,6 +200,7 @@ curl —location —request PUT ‘https://omni-apis.montymobile.com/notificatio
 
             $data[] = [
                 'title' => '<span>GET</span> Send SMS',
+                'slug' => 'get-send-sms',
                 'description' => 'This API allows you to send a single SMS to a recipient by providing the destination number, source (sender ID), and the message. It is used for sending quick, direct messages.',
                 'use_case' => 'Imagine you’re running a utility company and need to send a reminder to customers about an upcoming payment deadline. By using this API, you can send a personalized message to each customer, such as: “Your payment for this month is due on the 15th. Please contact us if you have any questions.” This is an ideal use case for sending important notifications that require immediate attention.',
                 'info' => [
@@ -297,6 +300,7 @@ send-sms?Destination=96171454548&Source=1234&Message=Hello%20World&ApiId=56c1572
 
             $data[] = [
                 'title' => '<span>POST</span> Send SMS',
+                'slug' => 'post-send-sms',
                 'description' => 'Similar to the GET method, this API also allows sending a single SMS, but it uses a POST request. It sends the SMS to a specified destination with a source and message.',
                 'use_case' => 'You’re a customer support platform, and you need to send order confirmation or support ticket updates to users. By using this API, you can send a confirmation message like “Your order has been confirmed! Thank you for shopping with us.” or “Your support ticket is now being processed. We will update you shortly.”',
                 'info' => [
@@ -400,6 +404,7 @@ curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/se
 
             $data[] = [
                 'title' => '<span>POST</span> Send OTP (One-Time Password) via SMS',
+                'slug' => 'post-send-otp',
                 'description' => 'This API is used to send a one-time password (OTP) via SMS. It is commonly used for two-factor authentication (2FA), identity verification, and secure login processes.',
                 'use_case' => 'You are building an online banking application, and customers need to verify their identity to log in securely. Using this API, you can send a one-time password to the user’s registered phone number, ensuring secure authentication for sensitive transactions.',
                 'info' => [
@@ -485,6 +490,7 @@ curl —location ‘https://omni-apis.montymobile.com/notification/api/v1/sms/se
 
             $data[] = [
                 'title' => '<span>POST</span> Send Bulk SMS',
+                'slug' => 'post-send-bulk-sms',
                 'description' => 'This API allows you to send bulk SMS messages to multiple recipients. It is particularly useful for marketing campaigns, alerts, and notifications where you need to reach a large audience simultaneously. With this API, you can specify the sender ID, message content, and a list of destination phone numbers.',
                 'use_case' => 'Imagine you are managing a marketing campaign for a retail store that’s offering a limited-time sale. You can use the Send Bulk SMS API to notify thousands of customers simultaneously about the sale. By providing the source (sender ID) and the message content, you can send personalized promotions directly to the users’ phones. This API ensures that your message reaches all recipients in a timely manner, making it perfect for large-scale campaigns.',
                 'info' => [

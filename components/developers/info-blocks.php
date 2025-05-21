@@ -7,7 +7,7 @@ if ($args['data']) {
 
 <?php if ($data): ?>
     <?php foreach ($data as $key => $d): ?>
-        <div class="white-block">
+        <div class="white-block" id="<?= $d['slug'] ?>">
             <?php if ($d['title']): ?>
                 <h3><?= $d['title'] ?></h3>
             <?php endif; ?>
